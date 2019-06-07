@@ -19,10 +19,10 @@
 ##-------------------------------------------------
 
 # The binary to build (just the basename).
-BIN := dexter
+BIN := kubeauth
 
 # This repo's root import path (under GOPATH).
-PKG := github.com/gini/dexter
+PKG := github.com/davidr-asapp/dexter-kubeauth
 
 # Where to push the docker image.
 REGISTRY ?=
@@ -111,7 +111,7 @@ unembed:
 kubeauth_complete: 
 	case "$$?" in  \
 	0)  \
-		echo "Installing kubeauth ..." && cp -pv build/dexter_darwin_amd64 bin/kubeauth; \
+		echo "Installing kubeauth ..." && cp -pv build/kubeauth_darwin_amd64 bin/kubeauth; \
 		echo "unembedding kubeauth vars..." &&  cp -pv tmp/okta.go vendor/golang.org/x/oauth2/okta/okta.go && cp -pv tmp/auth.go cmd/auth.go; \
 		;; \
 	*)  \

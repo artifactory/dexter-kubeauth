@@ -20,7 +20,7 @@
 
 // The Makefile creates cmd/kubeauth, and creats and uses ./tmp for temporary storage of the non-embedded source files
 // usage:
-//		bin/kubeauth auth [dexter options]
+//		bin/kubeauth auth [kubeauth options]
 
 // In addition to the Okta docs cited above, see the exellent setup docs for jetstack/okta-kubectl-auth: https://github.com/jetstack/okta-kubectl-auth/blob/master/docs/okta-setup.md
 // i.e., in the kube-apiserver manifest, modify the authentication directive to:
