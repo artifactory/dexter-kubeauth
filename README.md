@@ -54,6 +54,12 @@ Run `kubeauth` without a command to access the help screen/intro.
 / /_/ \  ___/ >    <  |  | \  ___/|  | \/
 \____ |\___  >__/\_ \ |__|  \___  >__|
      \/    \/      \/           \/
+| |  / /
+| | / /
+|  \ \ UBEAUTH
+| | \ \
+| |  \ \
+
 
 kubeauth is a authentication helper for Kubernetes that does the heavy
 lifting for SSO (Single Sign On) for Kubernetes.
