@@ -14,6 +14,7 @@ This fork disables the original google and azure authentication; for those imple
 
 ## Okta and RBAC Setup
  (To be added... Description for setting up Okta OIDC and Authentication servers and the corresponding RBAC kubeapi configuration).
+[kubeapi server config flags](https://zoom.us/j/7533652875?pwd=RlBSOVZNTjRKdTArMUNqVmc5SkRmZz09) 
 
 ## Run kubeauth
 
