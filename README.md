@@ -1,5 +1,3 @@
-# Intro
-
 # kubeauth
 
 
@@ -10,10 +8,16 @@ This fork disables the original google and azure authentication; for those imple
 
 ## Authentication Flow
 
-`kubeauth` will open a new browser window and redirect you to your configured Idp. The only interaction you have is the login at your provider and your k8s config is updated automatically.
+`kubeauth` will open a new browser window and redirect you to Okta. The only interaction you have is the Okta login and your kubectl k8s config is updated automatically.
 
 ## Okta and RBAC Setup
- (To be added... Detailed description for setting up Okta OIDC and Authentication servers and the corresponding RBAC kubeapi configuration).   
+The Okta/RBAC integration process involves:   
+- setting up an Okta Authorization Server;   
+- setting up an Okta OIDC app;   
+- configuring the k8s cluster kubeapiserver.   
+
+(To be added... Detailed description for setting up Okta OIDC and Authentication servers and the corresponding RBAC kubeapi configuration).   
+
 [kubeapi server config flags](https://zoom.us/j/7533652875?pwd=RlBSOVZNTjRKdTArMUNqVmc5SkRmZz09)    
 [okta authorization server](https://developer.okta.com/docs/concepts/auth-servers/).  
 [okta oidc app](https://developer.okta.com/docs/concepts/auth-overview/#openid-connect).  
