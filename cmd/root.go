@@ -1,18 +1,18 @@
 package cmd
 
 import (
-	"github.com/spf13/cobra"
 	"fmt"
+
 	log "github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
 )
 
-const (
-	BANNER = `    .___               __                
-  __| _/____ ___  ____/  |_  ___________ 
- / __ |/ __ \\  \/  /\   __\/ __ \_  __ \
-/ /_/ \  ___/ >    <  |  | \  ___/|  | \/
-\____ |\___  >__/\_ \ |__|  \___  >__|   
-     \/    \/      \/           \/       
+const (`| |        | |                    | | | |    
+| | ___   _| |__   ___  __ _ _   _| |_| |__  
+| |/ / | | | '_ \ / _ \/ _` | | | | __| '_ \ 
+|   <| |_| | |_) |  __/ (_| | |_| | |_| | | |
+|_|\_\\__,_|_.__/ \___|\__,_|\__,_|\__|_| |_|
+
 `
 )
 
@@ -20,10 +20,10 @@ var (
 	Verbose bool
 
 	rootCmd = &cobra.Command{
-		Use:   "dexter",
+		Use:   "kubeauth",
 		Short: "A OpenId connect authentication helper for Kubernetes",
 		Long: fmt.Sprintf(`%s
-dexter is a authentication helper for Kubernetes that does the heavy
+kubeauth is a authentication helper for Kubernetes (based on dexter) that does the heavy
 lifting for SSO (Single Sign On) for Kubernetes.`, BANNER),
 	}
 )

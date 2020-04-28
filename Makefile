@@ -19,10 +19,10 @@
 ##-------------------------------------------------
 
 # The binary to build (just the basename).
-BIN := dexter
+BIN := kubeauth
 
 # This repo's root import path (under GOPATH).
-PKG := github.com/gini/dexter
+PKG := github.com/davidr-asapp/dexter-kubeauth
 
 # Where to push the docker image.
 REGISTRY ?=
@@ -33,7 +33,7 @@ ARCH ?= amd64
 ALL_ARCH := amd64
 
 # Which OS to build
-OS ?= linux
+OS ?= darwin
 
 # Artefact to create
 ARTIFACT ?= build/$(BIN)_$(OS)_$(ARCH)
@@ -54,6 +54,8 @@ DOB := $(shell date +%s)
 IMAGE := $(REGISTRY)/$(BIN)-$(ARCH)
 
 CGO_ENABLED := 0
+
+SHELL := /bin/bash
 
 ##-------------------------------------------------
 ## Rules
@@ -87,6 +89,35 @@ bin/$(ARCH)/$(BIN):
 	    -X $(PKG)/version.DOB=$(DOB) \
 	    -X $(PKG)/cmd.defaultClientID=$(CLIENT_ID) \
 	    -X $(PKG)/cmd.defaultClientSecret=$(CLIENT_SECRET)"
+
+
+kubeauth: embed build kubeauth_complete  # NOTE: run make with -k to ensure unembedding of files, e.g. `make -k kubeauth`. Otherwise you run the risk of commiting creds into the repo.
+
+# embed the creds into the executable, but keep them out of the repo.
+embed:
+	if [ ! -d tmp ]; then \
+  	mkdir tmp; \
+		echo tmp >> .gitignore; \
+  fi; 
+	cp -pv vendor/golang.org/x/oauth2/okta/okta.go tmp; 
+	cp -pv cmd/auth.go tmp; 
+	sed -i -e 's,OIDC_ENDPOINT,$(OIDC_ENDPOINT),g' ./vendor/golang.org/x/oauth2/okta/okta.go; 
+	sed -i -e 's,OIDC_CLIENT_ID,$(OIDC_CLIENT_ID),g' cmd/auth.go; 
+	sed -i -e 's,OIDC_CLIENT_SECRET,$(OIDC_CLIENT_SECRET),g' cmd/auth.go 
+	sed -i -e 's,OIDC_CALLBACK,$(OIDC_CALLBACK),g' cmd/auth.go 
+
+unembed:
+	echo "unembedding kubeauth vars..." &&  cp -pv tmp/okta.go vendor/golang.org/x/oauth2/okta/okta.go && cp -pv tmp/auth.go cmd/auth.go; 
+kubeauth_complete: 
+	case "$$?" in  \
+	0)  \
+		echo "Installing kubeauth ..." && cp -pv build/kubeauth_darwin_amd64 bin/kubeauth; \
+		echo "unembedding kubeauth vars..." &&  cp -pv tmp/okta.go vendor/golang.org/x/oauth2/okta/okta.go && cp -pv tmp/auth.go cmd/auth.go; \
+		;; \
+	*)  \
+		echo "unembedding kubeauth vars..." &&  cp -pv tmp/okta.go vendor/golang.org/x/oauth2/okta/okta.go && cp -pv tmp/auth.go cmd/auth.go; \
+		;; \
+	esac
 
 # Run go vet on repo
 vet:
