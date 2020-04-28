@@ -3,16 +3,17 @@
 # kubeauth
 
 
-`kubeauth` is a OIDC (OpenId Connect) helper forked from [dexter](https://github.com/gini/dexter) to create a hassle-free Kubernetes login experience;
-This fork adds okta fat id_token support, particularly for groups.
-This enables RBAC rolebindings based on groups.
+`kubeauth` is a OIDC (OpenId Connect) helper forked from [dexter](https://github.com/gini/dexter) to create a hassle-free Kubernetes login experience.
+This fork adds okta fat id_token support, enabling RBAC rolebindings based on groups.
+
+This fork disables the original google and azure authentication; for those implementations, please see the original `dexter` repo.
 
 ## Authentication Flow
 
 `kubeauth` will open a new browser window and redirect you to your configured Idp. The only interaction you have is the login at your provider and your k8s config is updated automatically.
 
 ## Okta and RBAC Setup
- (To be added...)
+ (To be added... Description for setting up Okta OIDC and Authentication servers and the corresponding RBAC kubeapi configuration).
 
 ## Run kubeauth
 
