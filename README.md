@@ -48,19 +48,12 @@ Run `kubeauth` without a command to access the help screen/intro.
 
 ```
 ❯ ./build/kubeauth_darwin_amd64
-    .___               __
-  __| _/____ ___  ____/  |_  ___________
- / __ |/ __ \\  \/  /\   __\/ __ \_  __ \
-/ /_/ \  ___/ >    <  |  | \  ___/|  | \/
-\____ |\___  >__/\_ \ |__|  \___  >__|
-     \/    \/      \/           \/
-| |  / /
-| | / /
-|  \ \ UBEAUTH
-| | \ \
-| |  \ \
-
-
+ _          _                      _   _     
+| |        | |                    | | | |    
+| | ___   _| |__   ___  __ _ _   _| |_| |__  
+| |/ / | | | '_ \ / _ \/ _` | | | | __| '_ \ 
+|   <| |_| | |_) |  __/ (_| | |_| | |_| | | |
+|_|\_\\__,_|_.__/ \___|\__,_|\__,_|\__|_| |_|
 kubeauth is a authentication helper for Kubernetes that does the heavy
 lifting for SSO (Single Sign On) for Kubernetes.
 
