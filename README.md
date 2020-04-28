@@ -124,7 +124,8 @@ It's awesome that you consider contributing to `kubeauth` and it's really simple
 
 ## Authors
 
-Initial code was written by [Daniel Kerwin](mailto:daniel@gini.net) & [David González Ruiz](mailto:david@gini.net)
+Initial code was written by [Daniel Kerwin](mailto:daniel@gini.net) & [David González Ruiz](mailto:david@gini.net)   
+`kubeauth` fork was written by [David Rosenbloom](mailto:david.rosenbloom@pm.me)
 
 ## Acknowledgements
 
