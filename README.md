@@ -1,46 +1,18 @@
 # Intro
-This fork is adding okta fat id_token support, particularly for groups.
-This (theoretically) enables RBAC rolebindings based on groups.
 
 # kubeauth
 
 
-`kubeauth` is a OIDC (OpenId Connect) helper (based on dexter) to create a hassle-free Kubernetes login experience powered by Google or Azure as Identity Provider.
-All you need is a properly configured Google or Azure client ID & secret.
+`kubeauth` is a OIDC (OpenId Connect) helper forked from [dexter](https://github.com/gini/dexter) to create a hassle-free Kubernetes login experience;
+This fork adds okta fat id_token support, particularly for groups.
+This enables RBAC rolebindings based on groups.
 
 ## Authentication Flow
 
 `kubeauth` will open a new browser window and redirect you to your configured Idp. The only interaction you have is the login at your provider and your k8s config is updated automatically.
 
-## Configuration
-### Google credentials
-
-  -  Open [console.developers.google.com](https://console.developers.google.com)
-  -  Create new credentials
-      - OAuth Client ID
-      - Web Application
-      - Authorized redirect URIs: http://127.0.0.1:64464/callback
-
-### Or, configure Azure credentials
-
-  -  Open [portal.azure.com](https://portal.azure.com)
-  -  Go to App registrations and create a new app
-      - Enter reply URI http://127.0.0.1:64464/callback
-      - Create secret key
-      - Collect application ID (client ID)
-
-### Auto pilot configuration
-kubeauth also support auto pilot mode. If your existing kubectl context uses one of the supported OIDC-providers, kubeauth will try to use the OIDC details from kubeconfig.
-
-## Installation
-
-
-
-It is possible to embed your Google credentials into the resulting binary.
-
-```
-CLIENT_ID=abc123.apps.googleusercontent.com CLIENT_SECRET=mySecret OS=linux make
-```
+## Okta and RBAC Setup
+ (To be added...)
 
 ## Run kubeauth
 
@@ -76,20 +48,19 @@ Running `kubeauth auth` will start the authentication process.
 
 ```
  ❯ ./build/kubeauth_darwin_amd64 auth --help
-Use your Google login to get a JWT (JSON Web Token) and update your
+Use your Okta login to get a JWT (JSON Web Token) and update your
 local k8s config accordingly. A refresh token is added and automatically refreshed
 by kubectl. Existing token configurations are overwritten.
-For details go to: https://blog.gini.net/
 
-kubeauths authentication flow
+For details on the original implementation go to: https://blog.gini.net/
+
+kubeauth authentication flow
 ===========================
 
 1. Open a browser window/tab and redirect you to Google (https://accounts.google.com)
 2. You login with your Google credentials
 3. You will be redirected to kubeauths builtin webserver and can now close the browser tab
 4. kubeauth extracts the token from the callback and patches your ~/.kube/config
-
-➜ Unless you have a good reason to do so please use the built-in google credentials (if they were added at build time)!
 
 Usage:
   kubeauth auth [flags]
@@ -106,6 +77,39 @@ Flags:
 
 Global Flags:
   -v, --verbose   verbose output
+```
+
+
+# From the original README: ===>
+
+## Configuration
+### Google credentials
+
+  -  Open [console.developers.google.com](https://console.developers.google.com)
+  -  Create new credentials
+      - OAuth Client ID
+      - Web Application
+      - Authorized redirect URIs: http://127.0.0.1:64464/callback
+
+### Or, configure Azure credentials
+
+  -  Open [portal.azure.com](https://portal.azure.com)
+  -  Go to App registrations and create a new app
+      - Enter reply URI http://127.0.0.1:64464/callback
+      - Create secret key
+      - Collect application ID (client ID)
+
+### Auto pilot configuration
+kubeauth also support auto pilot mode. If your existing kubectl context uses one of the supported OIDC-providers, kubeauth will try to use the OIDC details from kubeconfig.
+
+## Installation
+
+
+
+It is possible to embed your Google credentials into the resulting binary.
+
+```
+CLIENT_ID=abc123.apps.googleusercontent.com CLIENT_SECRET=mySecret OS=linux make
 ```
 
 ## Contribution Guidelines
